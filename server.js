@@ -9,7 +9,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const serviceAccount = require("../crud-cc-db-stepan-egorov-firebase-adminsdk-fbsvc-cfde84b395.json");
+const admin = require("firebase-admin");
+
+admin.initializeApp({
+  credential: admin.credential.cert(process.env.GOOGLE_APPLICATION_CREDENTIALS),
+});
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
